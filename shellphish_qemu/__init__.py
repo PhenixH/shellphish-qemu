@@ -7,8 +7,12 @@ def qemu_path(platform):
     for basename in (
         'shellphish-qemu-%s' % platform,
         'shellphish-qemu-linux-%s' % platform,
-        '%s' % platform,
+        'qemu-%s' % platform,
     ):
+        path = '/home/qemu2.3/qemu/x86_64-linux-user/qemu-x86_64' 
+		#Path to compiled qemu, relative to FNF dockerfile
+        if os.path.isfile(path):
+            return path
         path = os.path.join(qemu_base(), basename)
         if os.path.isfile(path):
             return path
